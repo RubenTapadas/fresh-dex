@@ -1,0 +1,6 @@
+<div class="poke-listing">
+  <app-pokemon-card
+    *ngFor="let pokemon of pokeList$ | async"
+    [poke]="pokemon"
+  ></app-pokemon-card>
+</div>

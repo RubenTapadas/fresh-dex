@@ -1,37 +1,23 @@
 <div *ngIf="poke as pokemon" class="poke-card">
-  <div>
+  <div class="pokemon-image">
     <img
       loading="lazy"
       alt="pokemon image"
       [src]="pokemon.sprites.front_default"
     />
-    <div class="cylinder">
-      <div class="water"></div>
-    </div>
   </div>
   <div class="card-details">
-    {{ pokemon.name }}
+    <div class="pokemon-name">{{ pokemon.species.name }}</div>
+    <div class="pokemon-number">Nº{{ pokemon.id }}</div>
   </div>
-  <div
-    class="poke-type"
-    [style.background]="
-      'linear-gradient(135deg,' +
-      colors[pokemon.types[0].type.name] +
-      ' 0%,' +
-      colors[pokemon.types[0].type.name] +
-      ' 49%,' +
-      (pokemon.types[1] ? 'transparent' : colors[pokemon.types[0].type.name]) +
-      ' 50%,' +
-      (pokemon.types[1] ? 'transparent' : colors[pokemon.types[0].type.name]) +
-      ' 51%,' +
-      (pokemon.types[1]
-        ? colors[pokemon.types[1].type.name]
-        : colors[pokemon.types[0].type.name]) +
-      ' 52%,' +
-      (pokemon.types[1]
-        ? colors[pokemon.types[1].type.name]
-        : colors[pokemon.types[0].type.name]) +
-      ' 100%)'
-    "
-  ></div>
+  <div class="poke-type">
+    <div
+      *ngFor="let type of pokemon.types"
+      [ngStyle]="{
+        'mask-image': 'url(assets/images/' + type.type.name + '.svg)',
+        '-webkit-mask-image': 'url(assets/images/' + type.type.name + '.svg)',
+        'background-color': colors[type.type.name]
+      }"
+    ></div>
+  </div>
 </div>

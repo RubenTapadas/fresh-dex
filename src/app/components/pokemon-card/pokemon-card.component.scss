@@ -5,9 +5,9 @@
   display: grid;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 9%), 0 3px 6px rgb(0 0 0 / 12%);
-  border-radius: 3px;
-  background-color: #f1f1f1;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 8px;
+  //backdrop-filter: blur(3px);
   grid-template-rows: 150px 23px;
 
   * {
@@ -22,32 +22,41 @@
     color: rgba(0, 0, 0, 0.78);
   }
 
-  .pokemon-image > img {
-    position: relative;
-    z-index: 1;
-    width: calc(100% - 16px);
-    height: calc(100% - 16px);
-    filter: drop-shadow(5px 5px 5px rgba(33, 33, 33, 0.7));
-    margin: 8px;
-    object-fit: contain;
-    object-position: bottom;
-    transition-duration: 0.2s;
+  .pokemon-image {
+    transition-duration: 0.5s;
+    opacity: 0.35;
+
+    > img {
+      position: relative;
+      z-index: 1;
+      width: calc(100% - 16px);
+      height: calc(100% - 16px);
+      filter: drop-shadow(5px 5px 5px rgba(33, 33, 33, 0.7));
+      margin: 8px;
+      object-fit: contain;
+      object-position: bottom;
+      transition-duration: 0.2s;
+    }
   }
 
-  &:hover .pokemon-image > img {
+  .pokemon-shiny-image {
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+  }
+
+  /* &:hover .pokemon-image > img {
     width: calc(100% - 2px);
     height: calc(100% - 2px);
     margin: 1px;
-  }
+  } */
 
   .card-details {
     z-index: 2;
     position: relative;
     text-align: center;
     border-radius: 3px;
-    background-color: #fff;
     color: #121212;
-    font-family: arial;
     font-weight: 600;
     text-transform: capitalize;
 
@@ -56,14 +65,14 @@
       left: 0;
       width: 0;
       height: 0;
-      filter: drop-shadow(5px 5px 5px rgba(33, 33, 33, 1));
       z-index: -1;
       content: "";
       position: absolute;
       margin-top: -45px;
       border-style: solid;
       border-width: 0 0 45px 200px;
-      border-color: transparent transparent #fff transparent;
+      border-color: transparent transparent rgba(255, 255, 255, 0.65)
+        transparent;
     }
 
     &:after {
@@ -74,7 +83,7 @@
       z-index: -1;
       content: "";
       position: absolute;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.65);
     }
 
     .pokemon-number {
@@ -90,18 +99,88 @@
   }
 
   .poke-type {
+    top: 0;
     margin: 5px;
     z-index: 0;
     display: flex;
     position: absolute;
 
     div {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       z-index: 1;
       position: relative;
       mask-size: cover;
       margin-right: 5px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.65);
+      padding: 2px;
+
+      div {
+        width: 18px;
+        height: 18px;
+      }
     }
+  }
+}
+
+.poke-collection {
+  top: 10px;
+  right: 0;
+  display: none;
+  z-index: 2;
+  padding: 1px 0;
+  position: absolute;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 9%), 0 3px 6px rgb(0 0 0 / 12%);
+  border-radius: 8px 0 0 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  grid-template-rows: auto auto;
+  transition-duration: 0.2s;
+
+  div {
+    width: 27px;
+    margin: 1px;
+    height: 0px;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 3px rgba(33, 33, 33, 0.3));
+    opacity: 0.5;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  }
+}
+
+.pokemon-container {
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 9%), 0 3px 6px rgb(0 0 0 / 12%);
+  border-radius: 8px;
+
+  &.in-collection {
+    .pokemon-default-image {
+      opacity: 1;
+    }
+    .poke-collection .collection {
+      opacity: 1;
+      transform: rotate(360deg);
+    }
+  }
+
+  &.in-shiny-collection {
+    .poke-collection .shiny-collection {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@keyframes rotatePokemon {
+  0% {
+    display: none;
+  }
+  50% {
+    display: block;
+  }
+  100% {
+    display: block;
   }
 }

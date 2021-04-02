@@ -1,23 +1,57 @@
-<div *ngIf="poke as pokemon" class="poke-card">
-  <div class="pokemon-image">
-    <img
-      loading="lazy"
-      alt="pokemon image"
-      [src]="pokemon.sprites.front_default"
-    />
+<div
+  *ngIf="poke as pokemon"
+  class="pokemon-container"
+  [ngClass]="{
+    'in-collection': (inCollection$ | async),
+    'in-shiny-collection': (inShinyCollection$ | async)
+  }"
+>
+  <div class="poke-card show-details">
+    <div class="pokemon-image pokemon-default-image">
+      <img
+        loading="lazy"
+        alt="pokemon image"
+        [src]="pokemon.sprites.front_default"
+      />
+    </div>
+    <div class="pokemon-image pokemon-shiny-image">
+      <img
+        loading="lazy"
+        alt="pokemon image"
+        [src]="pokemon.sprites.front_shiny"
+      />
+    </div>
+    <div class="card-details">
+      <div class="pokemon-name">{{ pokemon.species.name }}</div>
+      <div class="pokemon-number">Nº{{ pokemon.id }}</div>
+    </div>
+    <div class="poke-type">
+      <div *ngFor="let type of pokemon.types">
+        <div
+          [ngStyle]="{
+            'mask-image': 'url(assets/images/types/' + type.type.name + '.svg)',
+            '-webkit-mask-image':
+              'url(assets/images/types/' + type.type.name + '.svg)',
+            'background-color': colors[type.type.name]
+          }"
+        ></div>
+      </div>
+    </div>
   </div>
-  <div class="card-details">
-    <div class="pokemon-name">{{ pokemon.species.name }}</div>
-    <div class="pokemon-number">Nº{{ pokemon.id }}</div>
-  </div>
-  <div class="poke-type">
+  <div class="poke-collection">
     <div
-      *ngFor="let type of pokemon.types"
+      class="collection"
       [ngStyle]="{
-        'mask-image': 'url(assets/images/' + type.type.name + '.svg)',
-        '-webkit-mask-image': 'url(assets/images/' + type.type.name + '.svg)',
-        'background-color': colors[type.type.name]
+        'background-image': 'url(assets/images/pokeballs/pokeball.png)'
       }"
+      (click)="collection.updateList('collectionList', poke.id)"
+    ></div>
+    <div
+      class="shiny-collection"
+      [ngStyle]="{
+        'background-image': 'url(assets/images/pokeballs/premierball.png)'
+      }"
+      (click)="collection.updateList('shinyCollectionList', poke.id)"
     ></div>
   </div>
 </div>

@@ -1,8 +1,11 @@
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ChangeDetectionStrategy, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PokeApiService } from 'src/app/services/poke-api.service';
+import { CollectionHandlerService } from 'src/app/services/collection-handler.service';
+import { map } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
@@ -11,6 +14,16 @@ import { PokeApiService } from 'src/app/services/poke-api.service';
 })
 export class PokemonCardComponent implements OnInit {
   @Input() poke;
+
+  inCollection$ = this.collection.collectionList$.pipe(
+    untilDestroyed(this),
+    map((list) => list.includes(this.poke.id))
+  );
+
+  inShinyCollection$ = this.collection.shinyCollectionList$.pipe(
+    untilDestroyed(this),
+    map((list) => list.includes(this.poke.id))
+  );
 
   colors = {
     ice: '#96D9D6',
@@ -33,7 +46,7 @@ export class PokemonCardComponent implements OnInit {
     electric: '#F7D02C',
   };
 
-  constructor(private pokeApiService: PokeApiService) {}
+  constructor(public collection: CollectionHandlerService) {}
 
   ngOnInit(): void {}
 }

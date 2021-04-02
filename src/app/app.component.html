@@ -1,1 +1,16 @@
-<app-pokemon-listing></app-pokemon-listing>
+<div class="container">
+  <div class="sidepanel">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="pokemon-listing">
+    <app-pokemon-listing
+      (loadComplete)="loadCompleteTrigger()"
+    ></app-pokemon-listing>
+  </div>
+</div>
+
+<div class="cover-website" [ngClass]="{ 'load-complete': loadComplete }">
+  <div class="wrapper">
+    <div class="pokeball"></div>
+  </div>
+</div>

@@ -1,4 +1,13 @@
-<div class="poke-listing">
+<div
+  class="poke-listing"
+  [ngClass]="{
+    collects:
+      (collection.isCollector$ | async) ||
+      (collection.isShinyCollector$ | async),
+    'is-collector': (collection.isCollector$ | async),
+    'is-shiny-collector': (collection.isShinyCollector$ | async)
+  }"
+>
   <app-pokemon-card
     *ngFor="let pokemon of pokeList$ | async"
     [poke]="pokemon"

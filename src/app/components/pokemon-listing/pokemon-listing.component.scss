@@ -4,3 +4,50 @@
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
+
+.is-collector app-pokemon-card ::ng-deep {
+  .poke-collection {
+    display: grid;
+
+    .collection {
+      height: 27px;
+    }
+  }
+}
+
+.is-shiny-collector app-pokemon-card ::ng-deep {
+  .poke-collection {
+    display: grid;
+
+    .shiny-collection {
+      height: 27px;
+    }
+  }
+
+  .in-shiny-collection {
+    .pokemon-default-image {
+      opacity: 0;
+    }
+    .pokemon-shiny-image {
+      opacity: 1;
+    }
+    .poke-collection .shiny-collection {
+      opacity: 1;
+    }
+  }
+}
+
+.poke-listing:not(.collects) app-pokemon-card ::ng-deep {
+  .pokemon-default-image {
+    opacity: 1;
+  }
+  .pokemon-shiny-image {
+    opacity: 0;
+  }
+}
+
+.poke-listing:not(.is-shiny-collector) app-pokemon-card ::ng-deep {
+  .pokemon-shiny-image {
+    opacity: 0;
+  }
+}

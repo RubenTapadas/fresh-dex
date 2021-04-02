@@ -1,0 +1,84 @@
+<div class="sidebar-container">
+  <div class="profile">
+    <div>
+      <div class="profile-image">
+        <img src="assets/images/trainer.png" alt="profile-image" />
+      </div>
+      <div class="profile-content">
+        <input
+          id="username"
+          type="text"
+          class="profile-username"
+          value="Username"
+          (keyup)="usernameChange($event)"
+        />
+        <div class="profile-content-header">
+          <div
+            class="profile-collector-container"
+            [ngClass]="{
+              active: (collection.isCollector$ | async)
+            }"
+            (click)="toggleCollector('isCollector')"
+          >
+            <div class="collector profile-collector"></div>
+            <span>Collector</span>
+          </div>
+          <div
+            class="profile-shiny-hunter-container"
+            [ngClass]="{
+              active: (collection.isShinyCollector$ | async)
+            }"
+            (click)="toggleCollector('isShinyCollector')"
+          >
+            <div class="collector profile-shiny-hunter"></div>
+            <span>Shiny Hunter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="filters">
+    <div class="filter-title">Filters</div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        placeholder="Name"
+        (keyup)="changeFilter('name', $event.target.value)"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Number</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Number"
+        (keyup)="changeFilter('number', $event.target.value)"
+      />
+    </mat-form-field>
+    <div class="filter-types">
+      <div class="filter-title">Types</div>
+      <div class="filter-type-options">
+        <div
+          class="type-container"
+          *ngFor="let type of types | keyvalue"
+          (click)="toogleSelectedTypes(type.key)"
+          [ngClass]="{ disabled: !selectedTypes.includes(type.key) }"
+        >
+          <div
+            class="type"
+            [ngStyle]="{
+              'mask-image': 'url(assets/images/types/' + type.key + '.svg)',
+              '-webkit-mask-image':
+                'url(assets/images/types/' + type.key + '.svg)',
+              'background-color': type.value
+            }"
+          ></div>
+          <div class="type-name">
+            {{ type.key | titlecase }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

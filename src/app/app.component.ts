@@ -10,6 +10,11 @@ import { map, shareReplay, take } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'fresh-dex';
+  loadComplete = false;
 
   constructor() {}
+
+  loadCompleteTrigger() {
+    this.loadComplete = true;
+  }
 }

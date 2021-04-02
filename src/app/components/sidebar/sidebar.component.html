@@ -20,7 +20,12 @@
             }"
             (click)="toggleCollector('isCollector')"
           >
-            <div class="collector profile-collector"></div>
+            <div
+              class="collector profile-collector"
+              [ngStyle]="{
+                'background-image': 'url(assets/images/pokeballs/pokeball.png)'
+              }"
+            ></div>
             <span>Collector</span>
           </div>
           <div
@@ -30,7 +35,13 @@
             }"
             (click)="toggleCollector('isShinyCollector')"
           >
-            <div class="collector profile-shiny-hunter"></div>
+            <div
+              class="collector profile-shiny-hunter"
+              [ngStyle]="{
+                'background-image':
+                  'url(assets/images/pokeballs/premierball.png)'
+              }"
+            ></div>
             <span>Shiny Hunter</span>
           </div>
         </div>

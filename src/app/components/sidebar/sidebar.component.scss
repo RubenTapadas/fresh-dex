@@ -54,12 +54,19 @@ input {
   }
 
   .profile-content-header {
-    display: flex;
+    display: grid;
+    grid-gap: 7px;
+    grid-template-columns: auto auto;
+
     > div {
       display: flex;
       opacity: 0.4;
       align-items: center;
       cursor: pointer;
+      border-radius: 10px;
+      padding: 1px;
+      transition-duration: 0.2s;
+
       span {
         font-size: 0.7em;
         padding-top: 2px;
@@ -68,13 +75,15 @@ input {
 
       &.active {
         opacity: 1;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        background-color: #fff;
       }
     }
   }
 
   .collector {
-    width: 26px;
-    height: 26px;
+    width: 18px;
+    height: 18px;
     background-size: cover;
     background-repeat: none;
     transition-duration: 0.2s;

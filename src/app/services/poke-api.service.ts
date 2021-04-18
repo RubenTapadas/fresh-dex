@@ -21,7 +21,7 @@ export class PokeApiService {
   constructor(private http: HttpClient) {}
 
   pokeList$ = this.http
-    .get(`https://pokeapi.co/api/v2/pokemon?limit=2000&offset=0`)
+    .get(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`)
     .pipe(
       take(1),
       map((v) =>

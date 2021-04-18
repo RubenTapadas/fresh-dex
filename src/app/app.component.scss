@@ -3,6 +3,10 @@
   grid-gap: 20px;
   padding: 10px 40px;
   grid-template-columns: auto 1fr;
+
+  @media (max-width: 920px) {
+    grid-template-columns: 100%;
+  }
 }
 
 .pokemon-listing {

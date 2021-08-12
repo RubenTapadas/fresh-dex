@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { SearchFiltersService } from '../../services/search-filters.service';
 import { CollectionHandlerService } from '../../services/collection-handler.service';
+import {OptionsHandlerService} from '../../services/options-handler.service'
 
 @Component({
   selector: 'app-sidebar',
@@ -33,9 +34,12 @@ export class SidebarComponent implements OnInit {
 
   selectedTypes = [];
 
+  
+
   constructor(
     private sfs: SearchFiltersService,
-    public collection: CollectionHandlerService
+    public collection: CollectionHandlerService,
+    private optionsHandlerService:OptionsHandlerService
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +83,9 @@ export class SidebarComponent implements OnInit {
           .subscribe((c) => this.collection.isShinyCollector$.next(!c));
         break;
     }
+  }
+
+  changeDarkMode(isDarkMode: boolean): void{
+    this.optionsHandlerService.darkMode$.next(isDarkMode)
   }
 }

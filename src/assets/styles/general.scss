@@ -9,19 +9,26 @@ body {
   font-family: "Roboto", arial;
   min-height: 100vh;
 
-  &:before {
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    content: "";
-    z-index: -1;
-    position: fixed;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-      url(~/assets/images/wallpaper.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+  .container{
+    &:before {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      content: "";
+      z-index: -1;
+      position: fixed;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      var(--wallpaper);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
-
-  //background-color: #d8d8d8;
 }
+
+.mat-form-field-infix {
+  input, mat-label{
+  color:var(--font-color);
+}
+}
+

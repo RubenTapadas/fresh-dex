@@ -9,6 +9,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HttpClientModule,
     MatInputModule,
     ScrollingModule,
+    MatExpansionModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

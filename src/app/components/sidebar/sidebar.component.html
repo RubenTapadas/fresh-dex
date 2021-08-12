@@ -48,48 +48,70 @@
       </div>
     </div>
   </div>
-  <div class="filters">
-    <div class="filter-title">Filters</div>
-    <mat-form-field class="example-full-width">
-      <mat-label>Name</mat-label>
-      <input
-        matInput
-        placeholder="Name"
-        (keyup)="changeFilter('name', $event.target.value)"
-      />
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label>Number</mat-label>
-      <input
-        type="number"
-        matInput
-        placeholder="Number"
-        (keyup)="changeFilter('number', $event.target.value)"
-      />
-    </mat-form-field>
-    <div class="filter-types">
-      <div class="filter-title">Types</div>
-      <div class="filter-type-options">
-        <div
-          class="type-container"
-          *ngFor="let type of types | keyvalue"
-          (click)="toogleSelectedTypes(type.key)"
-          [ngClass]="{ disabled: !selectedTypes.includes(type.key) }"
-        >
-          <div
-            class="type"
-            [ngStyle]="{
-              'mask-image': 'url(assets/images/types/' + type.key + '.svg)',
-              '-webkit-mask-image':
-                'url(assets/images/types/' + type.key + '.svg)',
-              'background-color': type.value
-            }"
-          ></div>
-          <div class="type-name">
-            {{ type.key | titlecase }}
+  
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filters
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="filters">
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Name"
+            (keyup)="changeFilter('name', $event.target.value)"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Number</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder="Number"
+            (keyup)="changeFilter('number', $event.target.value)"
+          />
+        </mat-form-field>
+        <div class="filter-types">
+          <div class="filter-title">Types</div>
+          <div class="filter-type-options">
+            <div
+              class="type-container"
+              *ngFor="let type of types | keyvalue"
+              (click)="toogleSelectedTypes(type.key)"
+              [ngClass]="{ disabled: !selectedTypes.includes(type.key) }"
+            >
+              <div
+                class="type"
+                [ngStyle]="{
+                  'mask-image': 'url(assets/images/types/' + type.key + '.svg)',
+                  '-webkit-mask-image':
+                    'url(assets/images/types/' + type.key + '.svg)',
+                  'background-color': type.value
+                }"
+              ></div>
+              <div class="type-name">
+                {{ type.key | titlecase }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Options
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <mat-slide-toggle
+          class="example-margin"
+          (change)="changeDarkMode($event.checked)">
+        Dark Theme
+      </mat-slide-toggle></div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

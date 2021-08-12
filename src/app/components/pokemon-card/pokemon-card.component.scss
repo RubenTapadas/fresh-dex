@@ -5,7 +5,7 @@
   display: grid;
   overflow: hidden;
   position: relative;
-  background: rgba(255, 255, 255, 0.45);
+  background: var(--card-background);
   border-radius: 8px;
   //backdrop-filter: blur(3px);
   grid-template-rows: 150px 23px;
@@ -19,7 +19,7 @@
   }
 
   .pokemon-name {
-    color: rgba(0, 0, 0, 0.78);
+    color: var(--card-details-color);
   }
 
   .pokemon-image {
@@ -56,7 +56,6 @@
     position: relative;
     text-align: center;
     border-radius: 3px;
-    color: #121212;
     font-weight: 600;
     text-transform: capitalize;
 
@@ -71,7 +70,7 @@
       margin-top: -45px;
       border-style: solid;
       border-width: 0 0 45px 200px;
-      border-color: transparent transparent rgba(255, 255, 255, 0.65)
+      border-color: transparent transparent var(--card-details-background)
         transparent;
     }
 
@@ -83,11 +82,11 @@
       z-index: -1;
       content: "";
       position: absolute;
-      background-color: rgba(255, 255, 255, 0.65);
+      background-color: var(--card-details-background);
     }
 
     .pokemon-number {
-      color: #8e8e8e;
+      color: var(--card-datails-number-color);
       position: absolute;
       top: 0;
       right: 0;
@@ -113,7 +112,7 @@
       mask-size: cover;
       margin-right: 5px;
       border-radius: 5px;
-      background: rgba(255, 255, 255, 0.65);
+      background: var(--card-type-background);
       padding: 2px;
 
       div {
@@ -133,7 +132,6 @@
   position: absolute;
   box-shadow: 0 3px 6px rgb(0 0 0 / 9%), 0 3px 6px rgb(0 0 0 / 12%);
   border-radius: 8px 0 0 8px;
-  background-color: rgba(255, 255, 255, 0.7);
   grid-template-rows: auto auto;
   transition-duration: 0.2s;
 
